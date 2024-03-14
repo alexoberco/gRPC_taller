@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package student;
+
+// El servicio define los métodos RPC que pueden ser llamados remotamente.
+service StudentService {
+  // Retorna el nombre completo del estudiante basado en el ID.
+  rpc GetName(GetNameRequest) returns (GetNameResponse) {}
+
+  // Retorna el promedio de las notas de los talleres del estudiante.
+  rpc GetAverageScore(GetAverageScoreRequest) returns (GetAverageScoreResponse) {}
+
+  // Retorna el grupo de trabajo del estudiante.
+  rpc GetGroup(GetGroupRequest) returns (GetGroupResponse) {}
+}
+
+// Mensaje de solicitud para obtener un nombre.
+message GetNameRequest {
+  int32 id = 1;
+}
+
+// Mensaje de respuesta para obtener un nombre.
+message GetNameResponse {
+  string full_name = 1;
+}
+
+// Mensaje de solicitud para obtener un promedio de notas.
+message GetAverageScoreRequest {
+  oneof identifier {
+    string name = 1;
+    int32 id = 2;
+  }
+}
+
+// Mensaje de respuesta para obtener un promedio de notas.
+message GetAverageScoreResponse {
+  double average_score = 1;
+}
+
+// Mensaje de solicitud para obtener un grupo.
+message GetGroupRequest {
+  int32 id = 1;
+}
+
+// Mensaje de respuesta para obtener un grupo.
+message GetGroupResponse {
+  string group = 1;
+}
