@@ -7,7 +7,7 @@ import gRPC_pb2_grpc
 
 
 def run():
-    with grpc.insecure_channel("200.3.152.101:50051") as channel:
+    with grpc.insecure_channel("localhost:50051") as channel:
         stub = gRPC_pb2_grpc.StudentServiceStub(channel)
         respuesta = "s"
         while(respuesta == "s" or respuesta == "S"):
